@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PQC-Chatt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     SCREEN: AUTH (Login / Register)
+══════════════════════════════════════════════ -->
+<div id="screen-auth" class="screen">
+  <div class="auth-card">
+
+    <div class="auth-brand">
+      <div class="auth-logo">🔐</div>
+      <h1 class="auth-title">PQC-Chatt</h1>
+      <p class="auth-sub">Post-Quantum Secure Messaging</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tab-group">
+      <button class="tab-btn active" data-tab="login">Login</button>
+      <button class="tab-btn"        data-tab="register">Register</button>
+    </div>
+
+    <!-- Error -->
+    <p id="auth-error" class="error-msg"></p>
+
+    <!-- Login form -->
+    <form id="login-form" class="auth-form">
+      <div class="form-group">
+        <label for="login-username">Username</label>
+        <input id="login-username" type="text" placeholder="Enter username" required autocomplete="username" />
+      </div>
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <input id="login-password" type="password" placeholder="Enter password" required autocomplete="current-password" />
+      </div>
+      <button id="login-btn" class="btn-primary" type="submit">Login</button>
+    </form>
+
+    <!-- Register form (hidden initially) -->
+    <form id="reg-form" class="auth-form" style="display:none">
+      <div class="form-group">
+        <label for="reg-username">Username</label>
+        <input id="reg-username" type="text" placeholder="Choose a username" required autocomplete="username" />
+      </div>
+      <div class="form-group">
+        <label for="reg-password">Password</label>
+        <input id="reg-password" type="password" placeholder="Choose a password" required minlength="6" autocomplete="new-password" />
+      </div>
+      <button id="register-btn" class="btn-primary" type="submit">Create Account</button>
+    </form>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     SCREEN: APP (Sidebar + Chat)
+══════════════════════════════════════════════ -->
+<div id="screen-app" class="screen">
+  <div class="app-layout">
+
+    <!-- ── Sidebar ── -->
+    <aside class="sidebar">
+
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <span>🔐</span>
+          <span>PQC-Chatt</span>
+        </div>
+        <button id="logout-btn" class="btn-logout" title="Logout">⏻</button>
+      </div>
+
+      <div class="sidebar-me">
+        <div class="avatar" id="sidebar-initial">?</div>
+        <span class="sidebar-me-name" id="sidebar-username">—</span>
+        <span class="ws-dot disconnected" id="ws-dot"></span>
+      </div>
+
+      <div class="sidebar-search">
+        <input id="user-search" type="text" placeholder="Search users…" />
+      </div>
+
+      <ul id="user-list" class="user-list">
+        <li class="user-list-empty">Loading users…</li>
+      </ul>
+
+    </aside>
+
+    <!-- ── Chat Area ── -->
+    <main class="chat-area">
+
+      <!-- Empty state -->
+      <div id="chat-empty" class="chat-empty" style="display:flex">
+        <div class="chat-empty-icon">💬</div>
+        <p>Select a user to start chatting</p>
+      </div>
+
+      <!-- Chat header (hidden until user selected) -->
+      <div id="chat-header" class="chat-header" style="display:none">
+        <div class="avatar lg" id="chat-header-initial">?</div>
+        <div>
+          <h2 class="chat-header-name" id="chat-header-name">—</h2>
+          <span class="ws-badge disconnected" id="ws-badge">disconnected</span>
+        </div>
+        <div class="chat-header-lock" title="Encryption placeholder active">🔐</div>
+      </div>
+
+      <!-- Messages -->
+      <div id="chat-messages" class="chat-messages" style="display:none"></div>
+
+      <!-- Input bar -->
+      <form id="chat-form" class="chat-input-bar" style="display:none">
+        <input id="chat-input" class="chat-input" type="text" placeholder="Type a message…" autocomplete="off" />
+        <button class="chat-send-btn" type="submit">Send</button>
+      </form>
+
+    </main>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
